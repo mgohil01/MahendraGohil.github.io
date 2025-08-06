@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahendra Gohil - Senior IT Infrastructure Engineer</title>
+    <title>Mahendra Gohil - Interactive Resume</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -23,6 +23,7 @@
             --dark: #1e293b;
             --success: #10b981;
             --ai-color: #8b5cf6;
+            --ai-bg: rgba(139, 92, 246, 0.1);
         }
 
         body {
@@ -31,6 +32,8 @@
             color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
+            padding-bottom: 100px;
         }
 
         .container {
@@ -245,7 +248,6 @@
             background: rgba(30, 41, 59, 0.6);
             border-radius: 10px;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
         .job:hover {
@@ -471,6 +473,135 @@
             100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
         }
 
+        /* AI Voice Assistant */
+        .voice-assistant {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 300px;
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+
+        .voice-assistant.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .assistant-header {
+            background: linear-gradient(45deg, var(--ai-color), #7c3aed);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .assistant-header h3 {
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-assistant {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .assistant-content {
+            padding: 20px;
+        }
+
+        .assistant-title {
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .assistant-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .section-btn {
+            background: rgba(30, 41, 59, 0.6);
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            color: var(--light);
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-btn:hover {
+            background: rgba(37, 99, 235, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .section-btn i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .assistant-footer {
+            padding: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* AI Voice Button */
+        .voice-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, var(--ai-color), #7c3aed);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .voice-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.6);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
@@ -502,6 +633,18 @@
                 margin: 0 auto 20px;
                 width: fit-content;
             }
+            
+            .voice-assistant {
+                width: calc(100% - 40px);
+                left: 20px;
+                right: 20px;
+                bottom: 90px;
+            }
+            
+            .voice-btn {
+                right: 20px;
+                bottom: 20px;
+            }
         }
     </style>
 </head>
@@ -509,7 +652,7 @@
     <div class="container">
         <!-- AI Badge -->
         <div class="ai-badge">
-            <i class="fas fa-robot"></i> AI Specialist
+            <i class="fas fa-robot"></i> AI-Powered Resume
         </div>
         
         <!-- Header Section -->
@@ -531,7 +674,7 @@
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>Open to opportunities in UAE/Gulf/Singapore</span>
+                    <span>Open to UAE/Gulf/Singapore Opportunities</span>
                 </div>
             </div>
             <div class="social-links">
@@ -544,7 +687,7 @@
         <!-- Professional Summary -->
         <section class="section animated" style="animation-delay: 0.2s;">
             <h2 class="section-title"><i class="fas fa-user-tie"></i> Professional Summary</h2>
-            <p class="summary">
+            <p class="summary" id="professional-summary">
                 Experienced and certified Senior IT Infrastructure Engineer with over a decade of hands-on expertise in managing end-to-end IT operations, infrastructure, and support in diverse environments. Proven ability to lead IT initiatives, implement security protocols, manage global user support, and deliver technology solutions aligned with business goals. <span class="highlight">Seeking opportunities in the UAE, Gulf, Singapore and many more regions to contribute technical and managerial capabilities to a forward-thinking organization.</span>
             </p>
         </section>
@@ -552,7 +695,7 @@
         <!-- Core Competencies -->
         <section class="section animated" style="animation-delay: 0.3s;">
             <h2 class="section-title"><i class="fas fa-star"></i> Core Competencies</h2>
-            <div class="competencies">
+            <div class="competencies" id="core-competencies">
                 <div class="competency ai">AI and Automation</div>
                 <div class="competency">IT Infrastructure Management & Security</div>
                 <div class="competency">Server and Network Administration</div>
@@ -571,7 +714,7 @@
         <!-- Work Experience -->
         <section class="section animated" style="animation-delay: 0.4s;">
             <h2 class="section-title"><i class="fas fa-briefcase"></i> Work Experience</h2>
-            <div class="timeline">
+            <div class="timeline" id="work-experience">
                 <!-- Current Job -->
                 <div class="job">
                     <div class="job-header">
@@ -635,6 +778,31 @@
                     <div class="achievement">
                         <i class="fas fa-trophy"></i> Key Achievement: Successfully led IT setup of a new branch office, handling end-to-end network planning, procurement, and execution.
                     </div>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div class="company">Sampoorna Computer People Pvt.Ltd</div>
+                        <div class="duration">Sep 2013 – March 2015</div>
+                    </div>
+                    <div class="designation">Technical Support Engineer</div>
+                    <ul class="job-details">
+                        <li>Handled remote support and backup services for SME clients.</li>
+                        <li>Administered web servers, routers, and user accounts.</li>
+                        <li>Provided hands-on assistance with application and desktop issues.</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div class="company">Omnitech Global Service Pvt.Ltd</div>
+                        <div class="duration">Mar 2013 – Aug 2013</div>
+                    </div>
+                    <div class="designation">Hardware/Network Engineer</div>
+                    <ul class="job-details">
+                        <li>Onsite support for enterprise clients with hardware, networking, and printing infrastructure.</li>
+                        <li>Supported banking and office applications and documented technical issues and resolutions.</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -794,47 +962,132 @@
         </footer>
     </div>
 
+    <!-- Voice Assistant Button -->
+    <button class="voice-btn">
+        <i class="fas fa-robot"></i> Voice Assistant
+    </button>
+
+    <!-- Voice Assistant Panel -->
+    <div class="voice-assistant">
+        <div class="assistant-header">
+            <h3><i class="fas fa-robot"></i> Resume Voice Assistant</h3>
+            <button class="close-assistant">&times;</button>
+        </div>
+        <div class="assistant-content">
+            <h4 class="assistant-title">Select a section to listen</h4>
+            <div class="assistant-buttons">
+                <button class="section-btn" data-section="professional-summary">
+                    <i class="fas fa-user-tie"></i> Professional Summary
+                </button>
+                <button class="section-btn" data-section="core-competencies">
+                    <i class="fas fa-star"></i> Core Competencies
+                </button>
+                <button class="section-btn" data-section="work-experience">
+                    <i class="fas fa-briefcase"></i> Work Experience
+                </button>
+                <button class="section-btn" data-section="technical-skills">
+                    <i class="fas fa-laptop-code"></i> Technical Skills
+                </button>
+                <button class="section-btn" data-section="education">
+                    <i class="fas fa-graduation-cap"></i> Education & Certifications
+                </button>
+                <button class="section-btn" data-section="personal">
+                    <i class="fas fa-user-circle"></i> Personal Details
+                </button>
+            </div>
+        </div>
+        <div class="assistant-footer">
+            Click any section to hear it read aloud
+        </div>
+    </div>
+
     <script>
-        // Add animations when scrolling
-        document.addEventListener('DOMContentLoaded', function() {
-            const animatedItems = document.querySelectorAll('.animated');
+        // Resume content for voice assistant
+        const resumeContent = {
+            "professional-summary": "Experienced and certified Senior IT Infrastructure Engineer with over a decade of hands-on expertise in managing end-to-end IT operations, infrastructure, and support in diverse environments. Proven ability to lead IT initiatives, implement security protocols, manage global user support, and deliver technology solutions aligned with business goals. Seeking opportunities in the UAE, Gulf, Singapore and many more regions to contribute technical and managerial capabilities to a forward-thinking organization.",
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const animation = entry.target.style.animation;
-                        if (!animation || animation === 'none') {
-                            entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-                        }
-                    }
-                });
-            }, { threshold: 0.1 });
+            "core-competencies": "Core competencies include: AI and Automation, IT Infrastructure Management and Security, Server and Network Administration, Office 365, Active Directory, and Virtualization, End-User Support and Helpdesk Operations, IT Procurement and Vendor Management, Firewall and Network Security, Project Management and Cross-Functional Collaboration, Backup Solutions, Ticketing and Support Tools.",
             
-            animatedItems.forEach(item => {
-                observer.observe(item);
-            });
+            "work-experience": "Work Experience: Currently working as IT Manager at EVOLIS CARD PRINTER INDIA PRIVATE LIMITED since September 2022. Previously held positions as Senior IT Infrastructure Engineer at Skechers South Asia, Tech Expert at Whitehat Education Technology, Network Engineer at Gozoop Online, Technical Support Engineer at Sampoorna Computer People, and Hardware/Network Engineer at Omnitech Global Service.",
             
-            // Job card hover effect
-            const jobs = document.querySelectorAll('.job');
-            jobs.forEach(job => {
-                job.addEventListener('click', function() {
-                    const details = this.querySelector('.job-details');
-                    if (details.style.display === 'none' || !details.style.display) {
-                        details.style.display = 'block';
-                    } else {
-                        details.style.display = 'none';
-                    }
-                });
-            });
+            "technical-skills": "Technical Environment includes: Systems: Windows Server 2012/2016, Windows 10/11, macOS. Tools: Office 365, Outlook, Active Directory, Hyper-V, Citrix. Security: Sophos Firewall, Endpoint Protection. Storage: NAS, Remote Backup Systems. Networking: Cisco/HP Switches, Routers, VPNs.",
             
-            // WhatsApp link confirmation
-            const whatsappLink = document.querySelector('.social-link[href*="whatsapp"]');
-            whatsappLink.addEventListener('click', function(e) {
-                if(!confirm("You will be redirected to WhatsApp. Continue?")) {
-                    e.preventDefault();
-                }
+            "education": "Education: Bachelor of Computer Science from Mumbai University (2012), HSC from Maharashtra Board (2009), SSC from Maharashtra Board (2007). Certifications: Generative AI Foundations Certificate in collaboration with Microsoft, Microsoft Certified Exam 410, CCNA from RST forum, A+ Computer Course from NIIT, SQL fundamental.",
+            
+            "personal": "Personal Details: Date of Birth: 10th March 1989. Languages: English, Hindi, Marathi, Gujarati. Marital Status: Married. Relocation: Open to opportunities in UAE/Gulf countries. Passport: Valid and Ready."
+        };
+
+        // DOM Elements
+        const voiceBtn = document.querySelector('.voice-btn');
+        const voiceAssistant = document.querySelector('.voice-assistant');
+        const closeAssistant = document.querySelector('.close-assistant');
+        const sectionBtns = document.querySelectorAll('.section-btn');
+
+        // Toggle voice assistant
+        voiceBtn.addEventListener('click', () => {
+            voiceAssistant.classList.toggle('active');
+        });
+
+        // Close voice assistant
+        closeAssistant.addEventListener('click', () => {
+            voiceAssistant.classList.remove('active');
+        });
+
+        // Speak section content
+        sectionBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const section = btn.getAttribute('data-section');
+                speakSection(section);
+                
+                // Visual feedback
+                btn.style.background = 'rgba(37, 99, 235, 0.4)';
+                setTimeout(() => {
+                    btn.style.background = 'rgba(30, 41, 59, 0.6)';
+                }, 2000);
             });
         });
+
+        // Speak section using text-to-speech
+        function speakSection(section) {
+            if (!resumeContent[section]) return;
+            
+            const SpeechSynthesis = window.speechSynthesis;
+            if (SpeechSynthesis) {
+                // Cancel any ongoing speech
+                speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(resumeContent[section]);
+                utterance.rate = 1.0;
+                utterance.pitch = 1.0;
+                utterance.volume = 1.0;
+                
+                // Set a pleasant voice if available
+                const voices = speechSynthesis.getVoices();
+                const preferredVoice = voices.find(v => v.name.includes('Google') && v.lang.includes('en')) || 
+                                      voices.find(v => v.lang.includes('en'));
+                
+                if (preferredVoice) {
+                    utterance.voice = preferredVoice;
+                }
+                
+                speechSynthesis.speak(utterance);
+            } else {
+                alert("Text-to-speech is not supported in your browser. Please use Chrome or Edge.");
+            }
+        }
+
+        // Initial greeting
+        window.onload = function() {
+            setTimeout(() => {
+                const SpeechSynthesis = window.speechSynthesis;
+                if (SpeechSynthesis) {
+                    const utterance = new SpeechSynthesisUtterance(
+                        "Welcome to Mahendra Gohil's interactive resume. Click the Voice Assistant button to hear sections read aloud."
+                    );
+                    speechSynthesis.speak(utterance);
+                }
+            }, 2000);
+        };
     </script>
 </body>
 </html>
